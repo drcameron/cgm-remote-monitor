@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nightscout BG NOW</title>
+  <link href="/images/round1.png" rel="icon" id="favicon" type="image/png" />
+    <link rel='stylesheet' type='text/css' href='/css/main.css' />
+    <!-- New test-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css?v=0.3.3" />
+    <link rel="stylesheet" type="text/css" href="/css/dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="/css/drawer.css" />
+    <link rel="stylesheet" type="text/css" href="/bower_components/tipsy-jmalonzo/src/stylesheets/tipsy.css" />
+        <!-- End new-->
+  <style type="text/css">
+    .center {
+      text-align: center;
+      padding: 0;
+      margin: 0;
+    }
+    h1 {
+      padding: 0;
+      margin: 0;
+      font-size: 3500%;
+    }
+    html, body {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    html {
+    }
+    body {
+      font-size: 100%;
+      min-height: 100%;
+    }
+    .stale {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <!-- Original
+  <div class="center">
+   <!--<h1 class="bgnow"></h1> -->
+   <!--new code to test
+               <h1>
+               <span class="bgnow">---</span>
+               <span class="currentDirection">-</span>
+               </h1>
+   <!--end new code--> 
+   <!-- Take two-->
+   <div class="container" id="container">
+            <div class="status">
+                <div class="bgStatus current">
+                    <div id="noButton">
+                        <span class="currentBG">---</span>
+                        <span class="currentDirection">-</span>
+                    </div>
+                    <div id="bgButton" hidden="true">
+                        <span class="currentBG">---</span>
+                        <span class="currentDirection">-</span>
+                    </div>
+                </div>
+
+                <div class="time">
+                    <div class="timebox">
+                        <div id="currentTime">---</div>
+                        <div class="timeOther">
+                            <span id="lastEntry">---</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end take 2 -->
+   </div>
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript">
+    function query ( ) {
+      console.log('query');
+      $.ajax('/api/v1/entries/current.json', { success: render });
+    }
+    function render (xhr) {
+      console.log('xhr', xhr);
+      var rec = xhr[0];
+      var last = new Date(rec.date);
+      var now = new Date( );
+      $('.bgnow').text(rec.sgv);
+      var threshold = 1000 * 60 * 13;
+      $('.bgnow').toggleClass('stale', (now - last > threshold));
+      }
+    function init ( ) {
+      console.log('init');
+      query( );
+      setInterval(query, 1 * 60 * 1000);
+    }
+    init( );
+  </script>
+  <!--New JS-->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/api/v1/status.js"></script>
+  <script src="/bower_components/d3/d3.min.js"></script>
+  <script src="/bower_components/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+  <script src="/bower_components/tipsy-jmalonzo/src/javascripts/jquery.tipsy.js"></script>
+  <script src="/js/ui-utils.js"></script>
+  <script src="/js/client.js?v=0.3.3"></script>
+  <script src="/js/experiments.js"></script>
+</body>
+</html>
