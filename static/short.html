@@ -49,28 +49,26 @@
                </h1>
    <!--end new code--> 
    <!-- Take two-->
-   <div class="container" id="container">
-            <div class="status">
+   <div class="primary">
                 <div class="bgStatus current">
-                    <div id="noButton">
+                    <div class="bgButton ">
+                        <span class="pill rawbg hidden"><em></em><label></label></span>
                         <span class="currentBG">---</span>
-                        <span class="currentDirection">-</span>
+                        <span class="pill direction"></span>
                     </div>
-                    <div id="bgButton" hidden="true">
-                        <span class="currentBG">---</span>
-                        <span class="currentDirection">-</span>
-                    </div>
+                    <ul class="dropdown-menu" id="silenceBtn"></ul>
+                    <div class="majorPills"></div>
+                    <div class="minorPills"></div>
                 </div>
 
-                <div class="time">
-                    <div class="timebox">
+                <div class="status">
+                    <div class="statusBox">
                         <div id="currentTime">---</div>
-                        <div class="timeOther">
-                            <span id="lastEntry">---</span>
+                        <div class="statusPills">
+                            <span id="lastEntry" class="pill"><em></em><label></label></span>
                         </div>
                     </div>
                 </div>
-            </div>
             <!-- end take 2 -->
    </div>
   <script src="/bower_components/jquery/dist/jquery.min.js"></script>
